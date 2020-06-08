@@ -12,7 +12,7 @@ namespace View.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        Class1 pt = new Class1();
+        
         
         public IndexModel(ILogger<IndexModel> logger)
         {
