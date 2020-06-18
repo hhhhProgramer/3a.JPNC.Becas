@@ -7,7 +7,7 @@ namespace Model.Repositories
     {
         IEnumerable<T> GetAll();
         T Get(Int64 id);
-        void Insert(T entity);
+        int Insert(T entity);
         void Delete(T entity);
     }
 }

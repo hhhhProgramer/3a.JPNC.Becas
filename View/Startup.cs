@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Model.Models;
+using Model.Repositories;
 
 namespace View
 {
@@ -24,6 +27,20 @@ namespace View
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContextPool<AppDbContext>(options =>
+            {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("EFConnectionString")
+                );
+            }); 
+            services.AddScoped<AppDbContext>();
+            services.AddScoped(typeof(IRepository<>),typeof(SQLRepository<>));
+            services.AddRouting(option => {
+                option.LowercaseUrls = true;
+                option.LowercaseQueryStrings = true;
+                option.AppendTrailingSlash = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
