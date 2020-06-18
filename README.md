@@ -7,4 +7,4 @@ cada alumno recibira una beca dependiendo de su estudio socioeconomico
 
 tegnologias utilizadas:
 net core
-sql server
+Razor

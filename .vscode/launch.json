@@ -7,11 +7,12 @@
         {
             "type": "DotNetAutoAttach",
             "request": "launch",
-            "name": ".NET Core Watch",
+            "name": ".NET Core Watch: View",
             "args": [],
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
-            }
+            },
+            "project": "View"
         }
     ]
 }

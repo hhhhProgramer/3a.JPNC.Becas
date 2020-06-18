@@ -31,8 +31,16 @@
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-
   </style>
+
+  <script>
+    
+       function Confirm(msg)
+       {
+               alert(msg);
+       }
+
+  </script>
 
   </head>
 
@@ -63,9 +71,6 @@
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
               href="#nav-profile" role="tab" aria-controls="nav-profile"
               aria-selected="false">Datos de familiares</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-              href="#nav-contact" role="tab" aria-controls="nav-contact"
-              aria-selected="false">Datos de cuenta</a>
           </div>
         </nav>
 
@@ -421,7 +426,7 @@
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido patereno:</label>
                   <input type="text" class="form-control" id="Ingresos"
-                    placeholder="Apellido patereno" required>
+                    placeholder="" required>
                 </div>
               </div>
               <div class="col">
@@ -473,7 +478,7 @@
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido patereno:</label>
                   <input type="text" class="form-control" id="Ingresos"
-                    placeholder="Apellido patereno" required>
+                    placeholder="" required>
                 </div>
               </div>
               <div class="col">
@@ -526,7 +531,7 @@
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Direccion de vivienda:</label>
                   <input type="text" class="form-control" id="Ingresos"
-                    placeholder="Apellido patereno" required>
+                    placeholder="" required>
                 </div>
               </div>
               <div class="col">
@@ -550,55 +555,24 @@
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Comunidad o localidad:</label>
                   <input type="text" class="form-control" id="Ingresos"
-                    placeholder="Apellido patereno" required>
-                </div>
-              </div>
-            </div>
-
-          </li>
-
-
-        </div>
-
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-          aria-labelledby="nav-contact-tab">
-
-          <li class="list-group-item justify-content-end">
-            <div class="form-row m-3">
-              <div class="col">
-                <div class="form-group mx-sm-3 mb-2">
-                  <label for="user">Correo:</label>
-                  <input type="text" class="form-control" id="Ingresos"
                     placeholder="" required>
                 </div>
               </div>
-            </div>
-            <div class="form-row m-3">
-              <div class="col">
-                <div class="form-group mx-sm-3 mb-2">
-                  <label for="user">Contraseña:</label>
-                  <input type="password" class="form-control" id="Ingresos"
-                    placeholder="" required>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item justify-content-end">
-            <div class="row justify-content-end">
-              <div class="btn-group btn-group-justified" role="group"
-                aria-label="...">
-                <div class="btn-group" role="group">
-                  <button type="submit" class="btn btn-outline-success"
-                    onclick="Save()">
-                    <i class="fa fa-folder"> Guardar</i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </li>
-        </div>
 
-      </div>
+            </div>
+            <li class="list-group-item text-center">
+              
+              <div class="form-row m-3">
+                <div class="col">
+                  <a asp-page = "Index" onclick="Confirm('Datos guardados')" class="btn btn-success">Guardar datos</a>
+                  </div>
+              </div>
+            </li>
+
+          </li>
+
+          
+
     </ul>
 
   </body>
