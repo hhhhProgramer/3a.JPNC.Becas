@@ -21,7 +21,7 @@ namespace Model.Repositories
         public void Delete(T entity)
         {
             if(entity == null) throw new ArgumentNullException("Entity");
-            if(entity.id < 0) throw new ArgumentNullException("Entity");
+            if(entity.Id < 0) throw new ArgumentNullException("Entity");
 
             var Entity = entities.Attach(entity);
             Entity.State = EntityState.Deleted;
@@ -29,7 +29,7 @@ namespace Model.Repositories
 
         public T Get(long id)
         {
-            return entities.SingleOrDefault(x => x.id == id);
+            return entities.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<T> GetAll()
@@ -43,7 +43,7 @@ namespace Model.Repositories
 
             entities.Add(entity);
             context.SaveChanges();
-            return entity.id;
+            return entity.Id;
         }
     }
 }

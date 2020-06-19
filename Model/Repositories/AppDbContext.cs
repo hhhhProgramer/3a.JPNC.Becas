@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Design;
 namespace Model.Models 
 {
     public class AppDbContext : DbContext 
@@ -8,6 +8,8 @@ namespace Model.Models
 
             
         }
-        public DbSet<BaseEntity> BaseEntities{ get; set; }
+        public DbSet<Estudent> BaseEntities{ get; set; }
+        public DbSet<Evaluator> Evaluators{ get; set; }
+        public DbSet<EconomicStudy> EconomicStudies{ get; set; }
     }
 }
