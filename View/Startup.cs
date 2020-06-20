@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Model.Models;
 using Model.Repositories;
 
+
 namespace View
 {
     public class Startup
@@ -26,16 +27,16 @@ namespace View
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<AppDbContext>(
+                option => {
+                    option.UseSqlServer(Configuration.GetConnectionString("EFDbConnection"));
+                    }
+            );
+
             services.AddRazorPages();
 
-            services.AddDbContextPool<AppDbContext>(options =>
-            {
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("EFConnectionString")
-                );
-            }); 
             services.AddScoped<AppDbContext>();
-            services.AddScoped(typeof(IRepository<>),typeof(SQLRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(SQLRepository<>));
             services.AddRouting(option => {
                 option.LowercaseUrls = true;
                 option.LowercaseQueryStrings = true;

@@ -18,7 +18,10 @@ namespace Model
         public string Observations { get; set; }
 
         //FK
-
+        public int VisitId { get; set; }
+        public Visit visit { get; set; }
+        public int StudentId { get; set; }
+        public Student student { get; set; }
         
     }
 }
