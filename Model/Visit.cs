@@ -11,5 +11,8 @@ namespace Model
         public int EvaluatorId { get; set; }
         public Evaluator evaluator { get; set; }
 
+        public int StudyEconomicId { get; set; }
+        public EconomicStudy  economicStudy{ get; set; }
+
     }
 }

@@ -16,12 +16,6 @@ namespace Model
         public int Material { get; set; }
         public string Furniture { get; set; }
         public string Observations { get; set; }
-
-        //FK
-        public int VisitId { get; set; }
-        public Visit visit { get; set; }
-        public int StudentId { get; set; }
-        public Student student { get; set; }
         
     }
 }
