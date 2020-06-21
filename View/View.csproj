@@ -16,8 +16,8 @@
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.7.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\Control\Control.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
