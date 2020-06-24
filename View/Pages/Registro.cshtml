@@ -68,12 +68,15 @@
             <a class="nav-item nav-link active" id="nav-home-tab"
               data-toggle="tab" href="#nav-home" role="tab"
               aria-controls="nav-home" aria-selected="true">Datos del alumno</a>
+
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
               href="#nav-profile" role="tab" aria-controls="nav-profile"
               aria-selected="false">Datos de familiares</a>
+
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Datos de cuenta</a>
           </div>
         </nav>
-
+        <form method = "post">
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
             aria-labelledby="nav-home-tab">
@@ -82,21 +85,21 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido patereno:</label>
-                  <input type="text" class="form-control" id="Ingresos"
-                    placeholder="Apellido patereno" required>
+                  <input asp-for="student.FirstName" type="text" class="form-control" id="Ingresos"
+                    placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido materno:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="student.LastName" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Nombres:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="student.Names" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
@@ -106,13 +109,13 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Curp:</label>
-                  <input type="text" id="Curp" class="form-control" required>
+                  <input asp-for="student.Curp" type="text" id="Curp" class="form-control" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="pais">Nacionalidad:</label>
-                  <select name="pais" class="form-control">
+                  <select asp-for="student.Locality"  class="form-control">
                     <option value="">Seleccione</option>
                     <option value="argentina">Argentina</option>
                     <option value="20">Afganistán</option>
@@ -372,12 +375,7 @@
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="user">Fecha de nacimiento:</label>
-                <input id="datepicker" />
-                <script>
-              $('#datepicker').datepicker({
-                uiLibrary: 'bootstrap4'
-              });
-            </script>
+                <input type = "date" asp-for="student.Birthdate" id="datepicker" />
               </div>
             </div>
             <div class="col">
@@ -385,15 +383,15 @@
                 <label for="user">Genero:</label>
                 <div class="form-control">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio"
+                    <input asp-for="student.Gender" class="form-check-input" type="radio"
                       name="inlineRadioOptions" id="inlineRadio1"
-                      value="option1">
+                      value="0">
                     <label class="form-check-label" for="inlineRadio1">H</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio"
                       name="inlineRadioOptions" id="inlineRadio2"
-                      value="option2">
+                      value="1">
                     <label class="form-check-label" for="inlineRadio2">M</label>
                   </div>
                 </div>
@@ -403,7 +401,7 @@
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="user">Discapacidad:</label>
-                <input type="text" class="form-control" id="Egresos"
+                <input asp-for="student.Disability" type="text" class="form-control" id="Egresos"
                   placeholder="">
               </div>
             </div>
@@ -425,21 +423,21 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido patereno:</label>
-                  <input type="text" class="form-control" id="Ingresos"
+                  <input asp-for="Tutor.FirstName" type="text" class="form-control" id="Ingresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido materno:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="Tutor.LastName" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Nombres:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="Tutor.Names" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
@@ -449,19 +447,15 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Fecha de nacimiento:</label>
-                  <input id="datepicker2" />
-                  <script>
-                $('#datepicker2').datepicker({
-                  uiLibrary: 'bootstrap4'
-                });
-              </script>
+                  <input type = "date" asp-for="Tutor.Birthday"  id="datepicker2" />
+                  
                 </div>
               </div>
 
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Ocupación:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="Tutor.Occupation"  type="text" class="form-control" id="Egresos"
                     placeholder="">
                 </div>
               </div>
@@ -477,21 +471,21 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido patereno:</label>
-                  <input type="text" class="form-control" id="Ingresos"
+                  <input asp-for="Tutor2.FirstName" type="text" class="form-control" id="Ingresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Apellido materno:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="Tutor2.LastName" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Nombres:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="Tutor2.Names" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
@@ -501,19 +495,14 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Fecha de nacimiento:</label>
-                  <input id="datepicker3" />
-                  <script>
-                $('#datepicker3').datepicker({
-                  uiLibrary: 'bootstrap4'
-                });
-              </script>
+                  <input type="date" asp-for="Tutor2.Birthday" id="datepicker3" />
                 </div>
               </div>
 
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Ocupación:</label>
-                  <input type="text" class="form-control" id="Ocupacion"
+                  <input asp-for="Tutor2.Occupation" type="text" class="form-control" id="Ocupacion"
                     placeholder="" required>
                 </div>
               </div>
@@ -530,21 +519,21 @@
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Direccion de vivienda:</label>
-                  <input type="text" class="form-control" id="Ingresos"
+                  <input asp-for="student.Address" type="text" class="form-control" id="Ingresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Colonia:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="student.Suburb" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="user">Municipio:</label>
-                  <input type="text" class="form-control" id="Egresos"
+                  <input asp-for="student.Municipality" type="text" class="form-control" id="Egresos"
                     placeholder="" required>
                 </div>
               </div>
@@ -553,26 +542,40 @@
             <div class="form-row m-3">
               <div class="col">
                 <div class="form-group mx-sm-3 mb-2">
-                  <label for="user">Comunidad o localidad:</label>
-                  <input type="text" class="form-control" id="Ingresos"
+                  <label  for="user">Comunidad o localidad:</label>
+                  <input asp-for="student.Locality" type="text" class="form-control" id="Ingresos"
                     placeholder="" required>
                 </div>
               </div>
 
             </div>
+          </li>
+        </div>
+
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <li class="list-group-item text-left">
+              <div class="form-group mx-sm-3 mb-2">
+                  <label class="text-left" for="user">Correo:</label>
+                  <input asp-for="account.Correo" type="text" class="form-control" id="Ingresos"
+                    placeholder="" required>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label class="text-left" for="user">Contraseña:</label>
+                  <input asp-for="account.Password" type="password" class="form-control" id="Ingresos"
+                    placeholder="" required>
+                </div>
+            </li>
+
             <li class="list-group-item text-center">
-              
               <div class="form-row m-3">
                 <div class="col">
-                  <a asp-page = "Index" onclick="Confirm('Datos guardados')" class="btn btn-success">Guardar datos</a>
+                  <button type="submit"  class="btn btn-success">Guardar datos</button>
                   </div>
               </div>
             </li>
-
-          </li>
-
-          
-
+          </div>
+        </div>
+      </form>
     </ul>
 
   </body>

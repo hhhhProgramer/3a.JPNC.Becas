@@ -6,13 +6,9 @@ namespace Model
         public DateTime Date{ get; set; }
 
         //FK
-        public int StudentId { get; set; }
-        public Student student { get; set; }
-        public int EvaluatorId { get; set; }
-        public Evaluator evaluator { get; set; }
-
         public int StudyEconomicId { get; set; }
         public EconomicStudy  economicStudy{ get; set; }
-
+        public int AccountId { get; set; }
+        public Account account { get; set; }
     }
 }

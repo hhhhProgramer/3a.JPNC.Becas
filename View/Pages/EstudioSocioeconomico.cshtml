@@ -5,346 +5,364 @@
     Layout = "_Login";
 }
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/ESEC.js">
-
-    </script>
-    <title>Document</title>
-</head>
-
-
-<body>
-    <form>
-       <div class="card justify-content-center " style="width: 80%; margin-left:10%; margin-top:5%; margin-bottom:20%">
-            <div class="card-header text-center" style="background-color: #CC33CC; ">
-                Informacion socio economica
-            </div>
-
-            <ul class="list-group list-group-flush" >
-                <li class="list-group-item " >
-                    <div class="form-row m-3 ">
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Ingresos mensuales:</label>
-                                <input type="number" min="0" class="form-control" id="Ingresos" onchange="test()" placeholder="Ingresos mensuales" value="0">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Egresos mensuales:</label>
-                                <input type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0" readonly>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="form-row m-3 ">
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Alimentacion:</label>
-                                <input type="number" id="Alimentacion" min="0" class="form-control"  onchange="test()" value="0" onchange="test()">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Servicios:</label>
-                                <input type="number" min="0" class="form-control" id="Servicios" onchange="test()" value="0" placeholder="Servicios">
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="form-row m-3 ">
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Vivienda:</label>
-                                <input type="number" min="0" class="form-control" id="Vivienda" onchange="test()" value="0" placeholder="Vivienda">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Escolaridad:</label>
-                                <input type="number" min="0" class="form-control" id="Escolaridad" onchange="test()" value="0" placeholder="Escolaridad">
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="form-row m-3 ">
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Transporte:</label>
-                                <input type="number" min="0" class="form-control" id="Transporte" value="0" onchange="test()" placeholder="Transporte">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label  for="user" >Otro:</label>
-                                <input type="number" id="Otro" min="0" class="form-control"  value="0" onchange="test()">
-                            </div>
-                        </div> 
-                    </div>
-                </li>
-                <li class="list-group-item text-center" style="background-color: #CC33CC; ">
-                    <label for="" class="text-center"> Vivienda </label>
-                </li>
-                <li class="list-group-item " >
-                    <div class="row">
-                        <div class="col text-center">
-                            <div  style="background-color: rgb(107, 77, 107);">
-                                <label  style="color: #fff;">Servicios</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row m-5 ">
-                        <div class="col-md-auto-md-auto">
-                            <div class="form-check">
-                                <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="..." >
-                                Recolección de basura
-                            </div>
-                            <div class="form-check">
-                                <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Luz
-                            </div>
-                            <div class="form-check">
-                                <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Pavimentación
-                            </div>
-                        </div>
-                        <div class="col-md-auto-md-auto">
-                            <div class="form-check">
-                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Alumbrado
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Transporte
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Drenaje
-                            </div>
-                        </div>
-                        <div class="col-md-auto-md-auto">
-                            <div class="form-check">
-                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                Agua
-                            </div>
-                        </div>
-                    </div>    
-                </li>
-                
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col text-center">
-                            <div  style="background-color: rgb(107, 77, 107);">
-                                <label  style="color: #fff;">Area</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row m-5">
-                        <div class="col-md-auto-md-auto ">
-                            <div class="form-check">
-                                <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
-                                Cominidad indigena
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
-                                Rural
-                            </div>
-                        </div>
-                        <div class="col-md-auto-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="Area" required id="blankRadio1" value="option1" aria-label="...">
-                                Urbana
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
-                                Marginación
-                            </div>
-                        </div>
-                        <div class="col-md-auto-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
-                                Suburbana
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col text-center">
-                            <div  style="background-color: rgb(107, 77, 107);">
-                                <label  style="color: #fff;">Construcción</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row m-5">
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" required required id="blankRadio1" value="option1" aria-label="...">
-                                adobe
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                ladrillo
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                otro material
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                block 
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                lamina de acero
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                palma
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                carrizo
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                lamina de carton
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                piedra
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                cemento
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                madera
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                tabique
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                concreto
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                mixto
-                            </div>
-                        </div>
-
-                    </div>
-                </li>
-                
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col text-center">
-                            <div  style="background-color: rgb(107, 77, 107);">
-                                <label  style="color: #fff;">Status</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row m-5">
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Propia
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Rentada
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Prestada
-                            </div>
-                        </div>
-
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Invasión
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                No tiene
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Compartida
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
-                                Comprada
-                            </div>
-                        </div>   
+@{
+    if(@Model.Codigo <= 0 ){
+        @using(Html.BeginForm()) //Buscar el codigo
+        {
+            <form method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Codigo de visita:</label>
+                    <input asp-for= "Codigo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col text-center">
-                        <div  style="background-color: rgb(107, 77, 107);">
-                            <label  style="color: #fff;">Mobiliario</label>
-                        </div>
-                    </div>
-                </div>
-                <div class = "form-row m-5">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">La vivienda cuenta con (Moviliaria):</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col text-center">
-                        <div  style="background-color: rgb(107, 77, 107);">
-                            <label  style="color: #fff;">Observaciones</label>
-                        </div>
-                    </div>
-                </div>
-                <div class = "form-row m-5">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Se pudo observar que:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </li> 
-            <li class="list-group-item justify-content-end">
-                <div class="row justify-content-end">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="..."> 
-                        <div class="btn-group" role="group">
-                          <button type="submit" class="btn btn-outline-success" onclick="Save()">
-                             <i class="fa fa-folder"> Finalizar estudio</i>
-                          </button>
-                        </div>
-                      </div>
-                </div>
-            </li> 
-        </div>
-            </div>
-    </form>   
-</body> 
-</html>
+                <button type="submit" class="btn btn-primary">Comenzar estudio</button>
+            </form>      
+        }
+    }else{
+        @using(Html.BeginForm()) //Estudio socioeconomico
+        {            
+            <!DOCTYPE html>
+            <html lang="en" />
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <script src="js/ESEC.js">
+
+                </script>
+                <title>Document</title>
+            </head>
+
+
+            <body>
+                <form>
+                            <div class="card justify-content-center " style="width: 80%; margin-left:10%; margin-top:5%; margin-bottom:20%">
+                                    <div class="card-header text-center" style="background-color: #CC33CC; ">
+                                        Informacion socio economica
+                                    </div>
+
+                                    <ul class="list-group list-group-flush" >
+                                        <li class="list-group-item " >
+                                            <div class="form-row m-3 ">
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Ingresos mensuales:</label>
+                                                        <input type="number" min="0" class="form-control" id="Ingresos" onchange="test()" placeholder="Ingresos mensuales" value="0">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Egresos mensuales:</label>
+                                                        <input type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0" readonly>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-row m-3 ">
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Alimentacion:</label>
+                                                        <input type="number" id="Alimentacion" min="0" class="form-control"  onchange="test()" value="0" onchange="test()">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Servicios:</label>
+                                                        <input type="number" min="0" class="form-control" id="Servicios" onchange="test()" value="0" placeholder="Servicios">
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-row m-3 ">
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Vivienda:</label>
+                                                        <input type="number" min="0" class="form-control" id="Vivienda" onchange="test()" value="0" placeholder="Vivienda">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Escolaridad:</label>
+                                                        <input type="number" min="0" class="form-control" id="Escolaridad" onchange="test()" value="0" placeholder="Escolaridad">
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-row m-3 ">
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Transporte:</label>
+                                                        <input type="number" min="0" class="form-control" id="Transporte" value="0" onchange="test()" placeholder="Transporte">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label  for="user" >Otro:</label>
+                                                        <input type="number" id="Otro" min="0" class="form-control"  value="0" onchange="test()">
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </li>
+
+                                        <li class="list-group-item text-center" style="background-color: #CC33CC; ">
+                                            <label for="" class="text-center"> Vivienda </label>
+                                        </li>
+
+                                        <li class="list-group-item " >
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <div  style="background-color: rgb(107, 77, 107);">
+                                                        <label  style="color: #fff;">Servicios</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row m-5 ">
+                                                <div class="col-md-auto-md-auto">
+                                                    <div class="form-check">
+                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="..." >
+                                                        Recolección de basura
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Luz
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Pavimentación
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Alumbrado
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Transporte
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Drenaje
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        Agua
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                        </li>
+                                        
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <div  style="background-color: rgb(107, 77, 107);">
+                                                        <label  style="color: #fff;">Area</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row m-5">
+                                                <div class="col-md-auto-md-auto ">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        Cominidad indigena
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        Rural
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="Area" required id="blankRadio1" value="option1" aria-label="...">
+                                                        Urbana
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        Marginación
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        Suburbana
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <div  style="background-color: rgb(107, 77, 107);">
+                                                        <label  style="color: #fff;">Construcción</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row m-5">
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" required required id="blankRadio1" value="option1" aria-label="...">
+                                                        adobe
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        ladrillo
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        otro material
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        block 
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        lamina de acero
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        palma
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        carrizo
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        lamina de carton
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        piedra
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        cemento
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        madera
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        tabique
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        concreto
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        mixto
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <div  style="background-color: rgb(107, 77, 107);">
+                                                        <label  style="color: #fff;">Status</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row m-5">
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Propia
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Rentada
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Prestada
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Invasión
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        No tiene
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Compartida
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        Comprada
+                                                    </div>
+                                                </div>   
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div  style="background-color: rgb(107, 77, 107);">
+                                                    <label  style="color: #fff;">Mobiliario</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "form-row m-5">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">La vivienda cuenta con (Moviliaria):</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div  style="background-color: rgb(107, 77, 107);">
+                                                    <label  style="color: #fff;">Observaciones</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "form-row m-5">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Se pudo observar que:</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li> 
+                                    <li class="list-group-item justify-content-end">
+                                        <div class="row justify-content-end">
+                                            <div class="btn-group btn-group-justified" role="group" aria-label="..."> 
+                                                <div class="btn-group" role="group">
+                                                    <button type="submit" class="btn btn-outline-success" onclick="Save()">
+                                                        <i class="fa fa-folder"> Finalizar estudio</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li> 
+                            </div>   
+                </form>   
+            </body> 
+        }
+    }
+}

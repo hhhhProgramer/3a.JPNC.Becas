@@ -37,18 +37,25 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input  asp-for="Correo" type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input  asp-for="Correo" type="text" class="form-control input_user"  placeholder="username">
 						</div>
 						<div class="input-group mb-5">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input asp-for="Password" type="password" name="" class="form-control input_pass" value="" placeholder="password">
+							<input asp-for="Password" type="password" class="form-control input_pass"  placeholder="password">
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	    	<a asp-action = "Login" class="btn btn-success">Inicio de sesion</a>
+				 	    	<button type="submit" class="btn btn-success">Inicio de sesion</button>
 				   </div>
+
+						<div class="mt-4">
+							<div class="d-flex justify-content-center links">
+								Registrate aqui: <a asp-page = "./Registro" class="ml-2">Sign Up</a>
+							</div>
+						</div>
 					</form>
+						
 				</div>
 			</div>
 		</div>

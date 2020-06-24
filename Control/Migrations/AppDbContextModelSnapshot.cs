@@ -156,8 +156,8 @@ namespace Control.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Locality")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Locality")
+                        .HasColumnType("int");
 
                     b.Property<string>("Municipality")
                         .HasColumnType("nvarchar(max)");

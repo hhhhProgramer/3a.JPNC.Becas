@@ -10,6 +10,15 @@ namespace Control {
 
         }
 
+        public bool IsRegister(Account account)
+        {
+            bool result = context.Set<Account> ().Any( x => 
+                x.Correo == account.Correo
+            );
+
+            return result;
+        }
+
         public Account Validate (Account account) {
             Account result = context.Set<Account> ().FirstOrDefault (x =>
                 x.Correo == account.Correo &&

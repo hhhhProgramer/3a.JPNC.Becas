@@ -6,20 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Model;
 using Control;
+using Control.Repositories;
 
 namespace Proyecto
 {
     public class LoginModel : PageModel
     {
-        private readonly IRepository<Student> repository;
+        private readonly IAccoutRepository repository;
         public IEnumerable<Student> Students { get; private set; }
 
         [BindProperty]
-        public int Correo { get; set; }
+        public string Correo { get; set; }
         [BindProperty]
-        public int Password { get; set; }
+        public string Password { get; set; }
 
-        public LoginModel(IRepository<Student> repository)
+        public LoginModel(IAccoutRepository repository)
         {
             this.repository = repository;
         }
@@ -30,7 +31,17 @@ namespace Proyecto
         }
 
         public void OnPost(){
-            
+            Account account =  repository.Validate(new Account{
+                Correo = this.Correo,
+                Password = this.Password
+            });
+
+
+            if(account.Id > 0){
+                 Console.Write("aguebos");
+                 Response.Redirect("../Registro"); 
+            }
+                return;
         }
 
     }

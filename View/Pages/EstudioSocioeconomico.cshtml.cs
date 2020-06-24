@@ -9,6 +9,9 @@ namespace Proyecto
 {
     public class EstudioSocioeconomicoModel : PageModel
     {
+        [BindProperty]
+         public int Codigo { get; set; }
+         
         public void OnGet()
         {
         }

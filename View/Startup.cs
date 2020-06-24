@@ -1,4 +1,5 @@
 using Control;
+using Control.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,10 @@ namespace View {
 
             services.AddScoped<AppDbContext> ();
             services.AddScoped (typeof (IRepository<>), typeof (SQLRepository<>));
+            services.AddScoped<IVisitRepository, VisitControl> ();
             services.AddScoped<IStudentRepository, StudentContainer> ();
+            services.AddScoped<IAccoutRepository, AccoutControl> ();
+            
             services.AddRouting (option => {
                 option.LowercaseUrls = true;
                 option.LowercaseQueryStrings = true;
