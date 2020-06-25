@@ -62,3 +62,5 @@ Control/obj/project.assets.json
 Control/obj/project.nuget.cache
 Control/obj/Debug/netcoreapp3.1/Control.assets.cache
 Control/obj/Debug/netcoreapp3.1/Control.csproj.FileListAbsolute.txt
+Model/ob/*
+Model/bin/*

@@ -6,13 +6,14 @@
 }
 
 @{
-    if(@Model.Codigo <= 0 ){
+    if(@Model.visit.Id <= 0 ){
         @using(Html.BeginForm()) //Buscar el codigo
         {
             <form method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Codigo de visita:</label>
-                    <input asp-for= "Codigo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input asp-for= "visit.Id" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label>@Model.Message</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Comenzar estudio</button>
             </form>      
