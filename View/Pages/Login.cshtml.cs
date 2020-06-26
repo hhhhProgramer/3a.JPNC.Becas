@@ -38,8 +38,7 @@ namespace Proyecto
 
 
             if(account.Id > 0){
-                 Console.Write("aguebos");
-                 Response.Redirect("../Registro"); 
+                 Response.Redirect("../Profile"); 
             }
                 return;
         }

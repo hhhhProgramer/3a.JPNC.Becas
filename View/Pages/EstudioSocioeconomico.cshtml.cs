@@ -18,11 +18,12 @@ namespace Proyecto
          public Visit visit { get; set; }
          public string Message { get; set; }
 
-         public EstudioSocioeconomicoModel(IRepository<Visit> repository)
-         {
-             this.repository = repository;
-             visit = new Visit();
-         }
+        public EstudioSocioeconomicoModel(IRepository<Visit> repository)
+        {
+            this.repository = repository;
+            visit = new Visit();
+        }
+        
         public void OnGet()
         {
 
@@ -32,6 +33,10 @@ namespace Proyecto
             visit = repository.Get(visit.Id) ?? new Visit();
             if(visit.Id <= 0)
                 Message = "No se encontro ningun id con ese codigo, intentelo nuevamente";
+
+            
+            
+            
         }
     }
 }

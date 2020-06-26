@@ -5,8 +5,5 @@ namespace Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Names { get; set; }
-
-        public int VisitId { get; set; }
-        public Visit visit { get; set; }
     }
 }
