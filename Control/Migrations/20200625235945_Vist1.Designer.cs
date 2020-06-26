@@ -4,14 +4,16 @@ using Control;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200625235945_Vist1")]
+    partial class Vist1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,19 +215,22 @@ namespace Control.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EconomicStudyId")
+                    b.Property<int>("EvaluatorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EvaluatorId")
+                    b.Property<int>("StudyEconomicId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("economicStudyId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
 
-                    b.HasIndex("EconomicStudyId");
-
                     b.HasIndex("EvaluatorId");
+
+                    b.HasIndex("economicStudyId");
 
                     b.ToTable("Visits");
                 });
@@ -256,17 +261,15 @@ namespace Control.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.EconomicStudy", "EconomicStudy")
-                        .WithMany()
-                        .HasForeignKey("EconomicStudyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.Evaluator", "evaluator")
                         .WithMany()
                         .HasForeignKey("EvaluatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Model.EconomicStudy", "economicStudy")
+                        .WithMany()
+                        .HasForeignKey("economicStudyId");
                 });
 #pragma warning restore 612, 618
         }

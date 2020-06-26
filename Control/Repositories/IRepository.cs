@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Control
         T Get(Int64 id);
         int Insert(T entity);
         void Delete(T entity);
+        DbSet<T> GetContex();
     }
 }

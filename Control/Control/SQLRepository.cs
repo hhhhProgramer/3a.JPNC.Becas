@@ -9,13 +9,15 @@ namespace Control
     public class SQLRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly AppDbContext context;
-        private DbSet<T> entities;
+        protected DbSet<T> entities;
 
         public SQLRepository(AppDbContext context)
         {
             this.context = context;
             this.entities = context.Set<T>();
         }
+
+
         public void Delete(T entity)
         {
             if(entity == null) throw new ArgumentNullException("Entity");
@@ -33,6 +35,11 @@ namespace Control
         public IEnumerable<T> GetAll()
         {
             return entities.AsEnumerable();
+        }
+
+        public DbSet<T> GetContex()
+        {
+            return entities;
         }
 
         public int Insert(T entity)

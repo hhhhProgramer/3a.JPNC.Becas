@@ -4,6 +4,6 @@ namespace Control.Repositories
 {
     public interface IVisitRepository : IRepository<Visit>
     {
-         bool IsReserved(Account account);
+         void Resrved(Account account);
     }
 }
