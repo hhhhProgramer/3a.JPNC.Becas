@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Model;
 using Control;
 using Control.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace Proyecto
 {
@@ -30,7 +31,8 @@ namespace Proyecto
 
         }
 
-        public void OnPost(){
+        [HttpPost]
+        public IActionResult OnPost(){
             Account account =  repository.Validate(new Account{
                 Correo = this.Correo,
                 Password = this.Password
@@ -38,9 +40,12 @@ namespace Proyecto
 
 
             if(account.Id > 0){
-                 Response.Redirect("../Profile"); 
+                HttpContext.Session.SetString("Correo",account.Correo);
+
+                return RedirectToAction("Registro");
+                
             }
-                return;
+                return RedirectToPage();
         }
 
     }

@@ -72,8 +72,6 @@
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
               href="#nav-profile" role="tab" aria-controls="nav-profile"
               aria-selected="false">Datos de familiares</a>
-
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Datos de cuenta</a>
           </div>
         </nav>
         <form method = "post">
@@ -550,22 +548,7 @@
 
             </div>
           </li>
-        </div>
-
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <li class="list-group-item text-left">
-              <div class="form-group mx-sm-3 mb-2">
-                  <label class="text-left" for="user">Correo:</label>
-                  <input asp-for="account.Correo" type="text" class="form-control" id="Ingresos"
-                    placeholder="" required>
-                </div>
-                <div class="form-group mx-sm-3 mb-2">
-                  <label class="text-left" for="user">Contraseña:</label>
-                  <input asp-for="account.Password" type="password" class="form-control" id="Ingresos"
-                    placeholder="" required>
-                </div>
-            </li>
-
+          
             <li class="list-group-item text-center">
               <div class="form-row m-3">
                 <div class="col">
@@ -573,8 +556,12 @@
                   </div>
               </div>
             </li>
-          </div>
+
         </div>
+
+
+        </div>
+
       </form>
     </ul>
 

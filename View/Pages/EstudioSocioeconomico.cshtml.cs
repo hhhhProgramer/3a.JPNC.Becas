@@ -6,22 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Model;
 using Control;
-
+using Control.Repositories;
 
 namespace Proyecto
 {
     public class EstudioSocioeconomicoModel : PageModel
     {
         private readonly IRepository<Visit> repository;
+        private readonly IVisitRepository ReposVisits;
+
+        public IEnumerable<Visit> Visits;
 
         [BindProperty]
          public Visit visit { get; set; }
          public string Message { get; set; }
 
-        public EstudioSocioeconomicoModel(IRepository<Visit> repository)
+        public EstudioSocioeconomicoModel(IRepository<Visit> repository,IVisitRepository ReposVisits)
         {
             this.repository = repository;
             visit = new Visit();
+            this.ReposVisits = ReposVisits;
+            this.Visits = ReposVisits.GetAll();
         }
         
         public void OnGet()

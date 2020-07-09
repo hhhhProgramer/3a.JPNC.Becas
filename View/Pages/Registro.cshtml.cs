@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Control;
 using Control.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Model;
@@ -54,10 +55,10 @@ namespace Proyecto {
             }else{
                 Console.WriteLine("Cuenta registrada");
             }
-
-            
-
         }
-
+        public ActionResult test(){
+             Console.WriteLine(HttpContext.Session.GetString("Correo"));
+            return RedirectToPage();
+        }
     }
 }

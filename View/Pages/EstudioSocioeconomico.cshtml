@@ -6,17 +6,20 @@
 }
 
 @{
-    if(@Model.visit.Id <= 0 ){
-        @using(Html.BeginForm()) //Buscar el codigo
+    if(true){
+        @using(Html.BeginForm())
         {
-            <form method="post">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Codigo de visita:</label>
-                    <input asp-for= "visit.Id" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <label>@Model.Message</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Comenzar estudio</button>
-            </form>      
+            <table class="table table-info table-striped">
+                @foreach (var item in Model.Visits)
+                {
+                <tr>
+                    <td scope="row">@Html.DisplayFor(m => item.Id)</td>
+                    <td>@Html.DisplayFor(m => item.AccountId)</td>
+                    <td>@Html.DisplayFor(m => item.Id)</td>
+                    <td><button type = submit>Enviar</button></td>
+                </tr>
+                }
+            </table>
         }
     }else{
         @using(Html.BeginForm()) //Estudio socioeconomico
