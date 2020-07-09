@@ -1,0 +1,16 @@
+﻿@page
+@model Proyecto.ProfileModel
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="@Url.Content("img/aplicacion-becas-benito-juarez.jpg")" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Becas de descuento</h5>
+    <p class="card-text">Aplica para la beca de descuento 
+        academico que puede reducir un porcentaje de tu inscripcion </p>
+        <a asp-page = "./Registro" class="btn btn-primary">Aplicar</a>
+  </div>
+</div>
