@@ -10,11 +10,11 @@
         @using(Html.BeginForm())
         {
             <table class="table table-info table-striped">
-                @foreach (var item in Model.Visits)
+                @foreach (var item in Model.evaluator.Visits)
                 {
                 <tr>
                     <td scope="row">@Html.DisplayFor(m => item.Id)</td>
-                    <td>@Html.DisplayFor(m => item.AccountId)</td>
+                    <td>@Html.DisplayFor(m => item.EconomicStudyId)</td>
                     <td>@Html.DisplayFor(m => item.Id)</td>
                     <td><button type = submit>Enviar</button></td>
                 </tr>

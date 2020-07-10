@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200709221204_migration")]
-    partial class migration
+    [Migration("20200710052847_newRelations")]
+    partial class newRelations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,12 +37,10 @@ namespace Control.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Accounts");
                 });
@@ -108,6 +106,9 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -118,6 +119,8 @@ namespace Control.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Evaluators");
                 });
@@ -177,6 +180,9 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Birthday")
                         .HasColumnType("int");
 
@@ -197,6 +203,8 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId");
+
                     b.HasIndex("StudentId");
 
                     b.ToTable("Tutors");
@@ -209,9 +217,6 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -223,8 +228,6 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("EconomicStudyId");
 
                     b.HasIndex("EvaluatorId");
@@ -232,17 +235,23 @@ namespace Control.Migrations
                     b.ToTable("Visits");
                 });
 
-            modelBuilder.Entity("Model.Account", b =>
+            modelBuilder.Entity("Model.Evaluator", b =>
                 {
-                    b.HasOne("Model.Student", "student")
+                    b.HasOne("Model.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Tutor", b =>
                 {
+                    b.HasOne("Model.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Model.Student", "student")
                         .WithMany()
                         .HasForeignKey("StudentId")
@@ -252,12 +261,6 @@ namespace Control.Migrations
 
             modelBuilder.Entity("Model.Visit", b =>
                 {
-                    b.HasOne("Model.Account", "account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.EconomicStudy", "EconomicStudy")
                         .WithMany()
                         .HasForeignKey("EconomicStudyId")
@@ -265,7 +268,7 @@ namespace Control.Migrations
                         .IsRequired();
 
                     b.HasOne("Model.Evaluator", "evaluator")
-                        .WithMany()
+                        .WithMany("Visits")
                         .HasForeignKey("EvaluatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

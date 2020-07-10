@@ -2,19 +2,28 @@
 @model Proyecto.SingInModel
 @{
 }
-<form>
+<form method="POST">
     <div class="form-row m-3">
     <div class="col">
         <div class="form-group mx-sm-3 mb-2">
-            <label for="user">Usuario:</label>
-            <input type="text" class="form-control" required>
+            <label for="user">Correo:</label>
+            <input asp-for="account.Correo" type="text" class="form-control" required>
         </div>
     </div>
-    <div class="col">
+   <div class="form-row m-3">
         <div class="form-group mx-sm-3 mb-2">
             <label for="user">Contraseña</label>
+            <input asp-for="account.Password" type="Password" class="form-control" required>
+        </div>
+    </div>
+    <div class="form-row m-3">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="user">Confirma Contraseña</label>
             <input type="Password" class="form-control" required>
         </div>
+    </div>
+    <div class="form-row m-3">
+        <input type= "submit" value="Crear cuenta">
     </div>
 </div>
 </form>

@@ -12,35 +12,23 @@ namespace Proyecto
 {
     public class EstudioSocioeconomicoModel : PageModel
     {
-        private readonly IRepository<Visit> repository;
         private readonly IVisitRepository ReposVisits;
+        public readonly IEvaluatorRepository evaluators;
+        public Evaluator evaluator;
 
-        public IEnumerable<Visit> Visits;
 
-        [BindProperty]
-         public Visit visit { get; set; }
-         public string Message { get; set; }
-
-        public EstudioSocioeconomicoModel(IRepository<Visit> repository,IVisitRepository ReposVisits)
+        public EstudioSocioeconomicoModel(IVisitRepository ReposVisits,IEvaluatorRepository evaluators)
         {
-            this.repository = repository;
-            visit = new Visit();
             this.ReposVisits = ReposVisits;
-            this.Visits = ReposVisits.GetAll();
+            this.evaluators = evaluators;
         }
         
-        public void OnGet()
+        public void OnGet(Account account)
         {
-
+            evaluator = evaluators.GetEvaluator(account.Id);
         }
 
         public void OnPost(){
-            visit = repository.Get(visit.Id) ?? new Visit();
-            if(visit.Id <= 0)
-                Message = "No se encontro ningun id con ese codigo, intentelo nuevamente";
-
-            
-            
             
         }
     }

@@ -9,6 +9,8 @@ namespace Model
         public string Occupation { get; set; }
 
         //FK
+        public int AccountId { get; set; }
+        public Account Account { get; set; }
 
         public int StudentId { get; set; }
         public Student student { get; set; }

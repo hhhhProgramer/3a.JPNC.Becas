@@ -40,7 +40,6 @@ namespace Control {
                         if (visit.Id <= 0) { //si no hay un evaluador registrado ese dia lo registra
                             send = false;
                             visit.Date = DateOfVisit;
-                            visit.account = account;
                             visit.evaluator = item;
                             visit.EconomicStudy = new EconomicStudy () { Status = false };
                             break;

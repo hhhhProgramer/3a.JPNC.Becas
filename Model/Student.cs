@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -16,5 +17,7 @@ namespace Model
         public int Locality { get; set; }
         public string Disability { get; set; }
         public string Address { get; set; }
+
+        IEnumerable<Tutor> Tutors { get; set; }
     }
 }

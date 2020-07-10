@@ -33,20 +33,30 @@ namespace Proyecto
 
         [HttpPost]
         public IActionResult OnPost(){
+            IActionResult result =  RedirectToPage();
+            
             Account account =  repository.Validate(new Account{
                 Correo = this.Correo,
                 Password = this.Password
             });
 
 
-            if(account.Id > 0){
-                HttpContext.Session.SetString("Correo",account.Correo);
+            if(account.Id > 0)
+            {
+                TypeAccount type = (TypeAccount)account.Type;
 
-                return RedirectToAction("Registro");
-                
-            }
-                return RedirectToPage();
+                switch(type)
+                {
+                    case TypeAccount.STUDENT:
+                        result = RedirectToPage("Profile","OnGet",account);        
+                    break;
+                    
+                    case TypeAccount.ADMIN:
+                        result = RedirectToPage("EstudioSocioeconomico","OnGet",account);        
+                    break;
+                }                
+            } 
+                return result;
         }
-
     }
 }
