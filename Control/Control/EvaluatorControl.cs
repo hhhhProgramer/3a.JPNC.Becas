@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 using System.Linq;
 using Control.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +21,5 @@ namespace Control
             
             return evaluator;
         }
-
-=======
-namespace Control
-{
-    public class EvaluatorControl
-    {
-        
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
     }
 }

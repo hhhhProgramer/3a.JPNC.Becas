@@ -1,8 +1,6 @@
 using System;
-<<<<<<< HEAD
 using System.Collections.Generic;
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
+
 
 namespace Model
 {

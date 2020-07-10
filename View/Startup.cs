@@ -39,17 +39,10 @@ namespace View
 
             services.AddScoped<AppDbContext> ();
             services.AddScoped (typeof (IRepository<>), typeof (SQLRepository<>));
-<<<<<<< HEAD
             services.AddScoped<IEvaluatorRepository, EvaluatorControl> ();
             services.AddScoped<IVisitRepository, VisitControl> ();
             services.AddScoped<IStudentRepository, StudentContainer> ();
             services.AddScoped<IAccoutRepository, AccoutControl> ();
-=======
-            services.AddScoped<IVisitRepository, VisitControl> ();
-            services.AddScoped<IStudentRepository, StudentContainer> ();
-            services.AddScoped<IAccoutRepository, AccoutControl> ();
-            services.AddScoped<IVisitRepository, VisitControl> ();
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
             
             services.AddRouting (option => {
                 option.LowercaseUrls = true;
