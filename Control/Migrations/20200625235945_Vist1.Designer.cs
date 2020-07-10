@@ -4,14 +4,16 @@ using Control;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200625235945_Vist1")]
+    partial class Vist1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,20 +37,13 @@ namespace Control.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-<<<<<<< HEAD
-                    b.Property<int>("Type")
-=======
                     b.Property<int>("StudentId")
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-=======
                     b.HasIndex("StudentId");
 
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.ToTable("Accounts");
                 });
 
@@ -113,12 +108,6 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -130,11 +119,6 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.HasIndex("AccountId");
-
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.ToTable("Evaluators");
                 });
 
@@ -193,12 +177,6 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.Property<int>("Birthday")
                         .HasColumnType("int");
 
@@ -219,11 +197,6 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.HasIndex("AccountId");
-
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.HasIndex("StudentId");
 
                     b.ToTable("Tutors");
@@ -236,63 +209,43 @@ namespace Control.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-=======
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EconomicStudyId")
-                        .HasColumnType("int");
 
                     b.Property<int>("EvaluatorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StudyEconomicId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("economicStudyId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-=======
                     b.HasIndex("AccountId");
 
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
-                    b.HasIndex("EconomicStudyId");
-
                     b.HasIndex("EvaluatorId");
+
+                    b.HasIndex("economicStudyId");
 
                     b.ToTable("Visits");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Model.Evaluator", b =>
-                {
-                    b.HasOne("Model.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-=======
             modelBuilder.Entity("Model.Account", b =>
                 {
                     b.HasOne("Model.Student", "student")
                         .WithMany()
                         .HasForeignKey("StudentId")
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Tutor", b =>
                 {
-<<<<<<< HEAD
-                    b.HasOne("Model.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-=======
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                     b.HasOne("Model.Student", "student")
                         .WithMany()
                         .HasForeignKey("StudentId")
@@ -302,30 +255,21 @@ namespace Control.Migrations
 
             modelBuilder.Entity("Model.Visit", b =>
                 {
-<<<<<<< HEAD
-=======
                     b.HasOne("Model.Account", "account")
                         .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
-                    b.HasOne("Model.EconomicStudy", "EconomicStudy")
-                        .WithMany()
-                        .HasForeignKey("EconomicStudyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.Evaluator", "evaluator")
-<<<<<<< HEAD
-                        .WithMany("Visits")
-=======
                         .WithMany()
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
                         .HasForeignKey("EvaluatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Model.EconomicStudy", "economicStudy")
+                        .WithMany()
+                        .HasForeignKey("economicStudyId");
                 });
 #pragma warning restore 612, 618
         }
