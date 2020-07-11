@@ -31,7 +31,7 @@ namespace Proyecto
 
         }
 
-        [HttpPost]
+
         public IActionResult OnPost(){
             IActionResult result =  RedirectToPage();
             

@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Control.Migrations
 {
-    public partial class Student2 : Migration
+    public partial class migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<bool>(nullable: false),
+                    Correo = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Type = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "EconomicStudies",
                 columns: table => new
@@ -48,35 +64,13 @@ namespace Control.Migrations
                     Discount = table.Column<int>(nullable: false),
                     Suburb = table.Column<string>(nullable: true),
                     Municipality = table.Column<string>(nullable: true),
-                    Locality = table.Column<string>(nullable: true),
+                    Locality = table.Column<int>(nullable: false),
                     Disability = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<bool>(nullable: false),
-                    Correo = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    StudentId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Accounts_Students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,11 +84,18 @@ namespace Control.Migrations
                     LastName = table.Column<string>(nullable: true),
                     Names = table.Column<string>(nullable: true),
                     Occupation = table.Column<string>(nullable: true),
+                    AccountId = table.Column<int>(nullable: false),
                     StudentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tutors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tutors_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tutors_Students_StudentId",
                         column: x => x.StudentId,
@@ -110,25 +111,17 @@ namespace Control.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: false),
-                    StudyEconomicId = table.Column<int>(nullable: false),
-                    economicStudyId = table.Column<int>(nullable: true),
-                    AccountId = table.Column<int>(nullable: false)
+                    TutorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Visits", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Visits_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
+                        name: "FK_Visits_Tutors_TutorId",
+                        column: x => x.TutorId,
+                        principalTable: "Tutors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Visits_EconomicStudies_economicStudyId",
-                        column: x => x.economicStudyId,
-                        principalTable: "EconomicStudies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,11 +133,18 @@ namespace Control.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Names = table.Column<string>(nullable: true),
+                    AccountId = table.Column<int>(nullable: false),
                     VisitId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Evaluators", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Evaluators_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Evaluators_Visits_VisitId",
                         column: x => x.VisitId,
@@ -154,9 +154,9 @@ namespace Control.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accounts_StudentId",
-                table: "Accounts",
-                column: "StudentId");
+                name: "IX_Evaluators_AccountId",
+                table: "Evaluators",
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluators_VisitId",
@@ -164,37 +164,37 @@ namespace Control.Migrations
                 column: "VisitId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tutors_AccountId",
+                table: "Tutors",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tutors_StudentId",
                 table: "Tutors",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Visits_AccountId",
+                name: "IX_Visits_TutorId",
                 table: "Visits",
-                column: "AccountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Visits_economicStudyId",
-                table: "Visits",
-                column: "economicStudyId");
+                column: "TutorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Evaluators");
+                name: "EconomicStudies");
 
             migrationBuilder.DropTable(
-                name: "Tutors");
+                name: "Evaluators");
 
             migrationBuilder.DropTable(
                 name: "Visits");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Tutors");
 
             migrationBuilder.DropTable(
-                name: "EconomicStudies");
+                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Students");

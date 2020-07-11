@@ -24,11 +24,12 @@ namespace Control {
             if(!evaluator.Any())
                 return;
             
-            bool send = true;
+          /* bool send = true;
             int day = 0;
             Visit visit = new Visit();
             DateTime DateOfVisit = DateTime.Now;
 
+            
             //cabiar a una consulta con linq 
             while (send) {
                 foreach (var item in evaluator) {
@@ -41,16 +42,12 @@ namespace Control {
                             send = false;
                             visit.Date = DateOfVisit;
                             visit.evaluator = item;
-                            visit.EconomicStudy = new EconomicStudy () { Status = false };
                             break;
                         }
                 }
                 day++; //si todos los evaluadores estan ocupados ese dia pasa al siguiente
             }
-            Insert (visit);
+            Insert (visit); */
         }
-
-        
-
     }
 }

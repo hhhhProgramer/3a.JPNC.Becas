@@ -7,12 +7,8 @@ namespace Model
     {
         public DateTime Date{ get; set; }
 
-        //FK
-        [ForeignKey("EconomicStudy")]
-        public int EconomicStudyId { get; set; }
-        public EconomicStudy EconomicStudy  { get; set; }
-              
-        public int EvaluatorId { get; set; }
-        public Evaluator evaluator { get; set; }
+        [ForeignKey("Tutor")]
+        public int TutorId { get; set; }
+        public Tutor Tutor { get; set; }
     }
 }

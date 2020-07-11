@@ -9,25 +9,7 @@
     if(true){
         @using(Html.BeginForm())
         {
-            <table class="table table-info table-striped">
-<<<<<<< HEAD
-                @foreach (var item in Model.evaluator.Visits)
-                {
-                <tr>
-                    <td scope="row">@Html.DisplayFor(m => item.Id)</td>
-                    <td>@Html.DisplayFor(m => item.EconomicStudyId)</td>
-=======
-                @foreach (var item in Model.Visits)
-                {
-                <tr>
-                    <td scope="row">@Html.DisplayFor(m => item.Id)</td>
-                    <td>@Html.DisplayFor(m => item.AccountId)</td>
->>>>>>> 60f20aaa57d4b0c51e44fd19f6bbb4e69828bb5b
-                    <td>@Html.DisplayFor(m => item.Id)</td>
-                    <td><button type = submit>Enviar</button></td>
-                </tr>
-                }
-            </table>
+            
         }
     }else{
         @using(Html.BeginForm()) //Estudio socioeconomico

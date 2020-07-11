@@ -12,7 +12,6 @@ namespace Proyecto
     {
         public Account account;
         
-        [HttpGet]
         public void OnGet(Account account)
         {
             this.account = account;

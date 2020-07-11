@@ -12,7 +12,9 @@ namespace Model
          //FK
         public int AccountId { get; set; }
         public Account Account { get; set; }
-        public IEnumerable<Visit> Visits{ get; set; }
+
+        public int VisitId { get; set; }
+        public Visit visit { get; set; }
 
     }
 }
