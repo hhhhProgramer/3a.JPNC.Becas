@@ -7,8 +7,12 @@ namespace Model
     {
         public DateTime Date{ get; set; }
 
-        [ForeignKey("Tutor")]
+        [ForeignKey("TutorId")]
         public int TutorId { get; set; }
         public Tutor Tutor { get; set; }
+        
+        [ForeignKey("EvaluatorId")]
+        public int EvaluatorId { get; set; }
+        public Evaluator Evaluator { get; set; }
     }
 }

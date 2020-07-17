@@ -15,11 +15,15 @@ namespace Control
 
         public Evaluator GetEvaluator(int AccountId)
         {
-            /*Evaluator evaluator =  context.Evaluators.Include(x => x.Visits).FirstOrDefault(x =>
-                x.AccountId == AccountId
-            ) ?? new Evaluator();*/
+            Evaluator evaluator =  context.Evaluators
+            .Include(b => b.Visits)
+                .ThenInclude(x => x.Tutor)
+                    .ThenInclude(x => x.student)
+            .FirstOrDefault(b => b.AccountId == AccountId)
+            ?? new Evaluator();
+ 
             
-            return new Evaluator();
+            return evaluator;
         }
     }
 }

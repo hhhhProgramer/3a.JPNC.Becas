@@ -6,10 +6,33 @@
 }
 
 @{
-    if(true){
+    if(@Model.evaluator.Id > 0){
         @using(Html.BeginForm())
         {
-            
+                <table class="table table-info table-striped " style="margin-top:10%;">
+                    <!--Head-->
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Tutor</th>
+                        <th scope="col">Alumno</th>
+                        <th scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        @foreach (var item in Model.evaluator.Visits)
+                        {
+                            <tr>
+                            <td>@Html.DisplayFor(m => item.Id)</td>
+                            <td>@Html.DisplayFor(m => item.Tutor.LastName)</td>
+                            <td>@Html.DisplayFor(m => item.Tutor.student.FirstName)</td>
+                            <td><a  href="@Url.Action("test");" >Encuestar</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
         }
     }else{
         @using(Html.BeginForm()) //Estudio socioeconomico
@@ -32,7 +55,7 @@
 
 
             <body>
-                <form>
+                <form method="POST">
                             <div class="card justify-content-center " style="width: 80%; margin-left:10%; margin-top:5%; margin-bottom:20%">
                                     <div class="card-header text-center" style="background-color: #CC33CC; ">
                                         Informacion socio economica
@@ -347,9 +370,7 @@
                                         <div class="row justify-content-end">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="..."> 
                                                 <div class="btn-group" role="group">
-                                                    <button type="submit" class="btn btn-outline-success" onclick="Save()">
-                                                        <i class="fa fa-folder"> Finalizar estudio</i>
-                                                    </button>
+                                                    <input type="submit" asp-page-handler="Terminate" class="btn btn-outline-success" onclick="Save()">                                                   
                                                 </div>
                                             </div>
                                         </div>

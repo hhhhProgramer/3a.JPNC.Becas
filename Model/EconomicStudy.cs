@@ -17,5 +17,9 @@ namespace Model
         public string Furniture { get; set; }
         public string Observations { get; set; }
         
+
+        //FK
+        public int EvaluatorId { get; set; }
+        public Evaluator Evaluator { get; set; }
     }
 }

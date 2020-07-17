@@ -10,6 +10,26 @@ namespace Control
 
             
         }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+    {
+        base.OnModelCreating(modelbuilder);
+
+        modelbuilder.Entity<Visit>()
+            .HasOne(c => c.Evaluator)
+            .WithMany(t => t.Visits)
+            .HasForeignKey(c => c.EvaluatorId)
+            .OnDelete(DeleteBehavior.Restrict); // no ON DELETE
+
+        modelbuilder.Entity(typeof (Visit))
+            .HasOne(typeof (Tutor), "Tutor")
+            .WithMany()
+            .HasForeignKey("TutorId")
+            .OnDelete(DeleteBehavior.Restrict); // no ON DELETE
+
+        
+    }
+        
         public DbSet<Evaluator> Evaluators{ get; set; }
         public DbSet<EconomicStudy> EconomicStudies{ get; set; }
         public DbSet<Student> Students{ get; set; }

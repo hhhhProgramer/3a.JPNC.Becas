@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200711012911_migration")]
-    partial class migration
+    [Migration("20200715051512_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,9 @@ namespace Control.Migrations
                     b.Property<int>("Distribution")
                         .HasColumnType("int");
 
+                    b.Property<int>("EvaluatorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Expenses")
                         .HasColumnType("int");
 
@@ -96,6 +99,8 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EvaluatorId");
+
                     b.ToTable("EconomicStudies");
                 });
 
@@ -118,14 +123,9 @@ namespace Control.Migrations
                     b.Property<string>("Names")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VisitId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("VisitId");
 
                     b.ToTable("Evaluators");
                 });
@@ -225,14 +225,28 @@ namespace Control.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EvaluatorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TutorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EvaluatorId");
+
                     b.HasIndex("TutorId");
 
                     b.ToTable("Visits");
+                });
+
+            modelBuilder.Entity("Model.EconomicStudy", b =>
+                {
+                    b.HasOne("Model.Evaluator", "Evaluator")
+                        .WithMany("Studies")
+                        .HasForeignKey("EvaluatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Evaluator", b =>
@@ -240,12 +254,6 @@ namespace Control.Migrations
                     b.HasOne("Model.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.Visit", "visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -267,10 +275,16 @@ namespace Control.Migrations
 
             modelBuilder.Entity("Model.Visit", b =>
                 {
+                    b.HasOne("Model.Evaluator", "Evaluator")
+                        .WithMany("Visits")
+                        .HasForeignKey("EvaluatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Model.Tutor", "Tutor")
                         .WithMany()
                         .HasForeignKey("TutorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -58,13 +58,8 @@ namespace Proyecto {
 
             repository.Insert (Tutor);
             repository.Insert (Tutor2);
-            ReposVisit.Resrved(account);
+            ReposVisit.Resrved(Tutor);
             Response.Redirect("../StudentIndex"); 
-            
-        }
-        public ActionResult test(){
-             Console.WriteLine(HttpContext.Session.GetString("Correo"));
-            return RedirectToPage();
         }
     }
 }

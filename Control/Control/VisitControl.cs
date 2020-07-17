@@ -9,13 +9,15 @@ namespace Control {
     public class VisitControl : SQLRepository<Visit>, IVisitRepository {
         
         private readonly IRepository<Evaluator> eval; 
-        public VisitControl (AppDbContext context, IRepository<Evaluator> eval) : base (context) { 
+        private readonly IRepository<Visit> ReposVisit;
+        public VisitControl (AppDbContext context, IRepository<Evaluator> eval,IRepository<Visit> ReposVisit) : base (context) { 
                 this.eval = eval;
+                this.ReposVisit = ReposVisit;
         }
 
         
 
-        public void Resrved (Account account) {
+        public void Resrved (Tutor tutor) {
             
             IEnumerable<Evaluator> evaluator = eval.GetAll();
             //context.Dispose();
@@ -24,11 +26,11 @@ namespace Control {
             if(!evaluator.Any())
                 return;
             
-          /* bool send = true;
+            bool send = true;
             int day = 0;
             Visit visit = new Visit();
             DateTime DateOfVisit = DateTime.Now;
-
+            visit.Tutor = tutor;
             
             //cabiar a una consulta con linq 
             while (send) {
@@ -41,13 +43,18 @@ namespace Control {
                         if (visit.Id <= 0) { //si no hay un evaluador registrado ese dia lo registra
                             send = false;
                             visit.Date = DateOfVisit;
-                            visit.evaluator = item;
+                            visit.Evaluator = item;
+                            visit.TutorId = tutor.Id;
                             break;
                         }
                 }
                 day++; //si todos los evaluadores estan ocupados ese dia pasa al siguiente
             }
-            Insert (visit); */
+            ReposVisit.Insert(new Visit(){
+                EvaluatorId = visit.Evaluator.Id,
+                TutorId = tutor.Id
+            });
+            Insert (visit); 
         }
     }
 }

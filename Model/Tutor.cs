@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Model
 {
     public class Tutor : BaseEntity
@@ -16,5 +18,6 @@ namespace Model
         public int StudentId { get; set; }
         public Student student { get; set; }
         
+        public IEnumerable<Visit> Visits;
     }
 }
