@@ -1,0 +1,2 @@
+dotnet ef database update  --project Control/Control.csproj --startup-project View/View.csproj
+dotnet ef migrations add Update1 --project Control/Control.csproj --startup-project View/View.csproj

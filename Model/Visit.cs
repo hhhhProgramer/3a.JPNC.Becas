@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
@@ -14,5 +15,6 @@ namespace Model
         [ForeignKey("EvaluatorId")]
         public int EvaluatorId { get; set; }
         public Evaluator Evaluator { get; set; }
+        public EconomicStudy EconomicStudy { get; set; }
     }
 }

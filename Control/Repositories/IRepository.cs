@@ -11,6 +11,7 @@ namespace Control
         T Get(Int64 id);
         int Insert(T entity);
         void Delete(T entity);
+        void Update(T entity);
         DbSet<T> GetContex();
     }
 }

@@ -6,9 +6,11 @@
 }
 
 @{
-    if(@Model.evaluator.Id > 0){
+    if(@Model.visit.Id <= 0)
+    {
         @using(Html.BeginForm())
         {
+            <form method = "Post">
                 <table class="table table-info table-striped " style="margin-top:10%;">
                     <!--Head-->
                     <thead class="thead-dark">
@@ -16,25 +18,29 @@
                         <th scope="col">Codigo</th>
                         <th scope="col">Tutor</th>
                         <th scope="col">Alumno</th>
+                        <th scope="col">Direcciòn</th>
                         <th scope="col">Accion</th>
                         </tr>
                     </thead>
                 
                     <tbody>
-                        @foreach (var item in Model.evaluator.Visits)
+                        @foreach (var item in @Model.Visits)
                         {
                             <tr>
                             <td>@Html.DisplayFor(m => item.Id)</td>
                             <td>@Html.DisplayFor(m => item.Tutor.LastName)</td>
                             <td>@Html.DisplayFor(m => item.Tutor.student.FirstName)</td>
-                            <td><a  href="@Url.Action("test");" >Encuestar</a></td>
+                            <td>@Html.DisplayFor(m => item.Tutor.student.Address)</td>
+                            <td><input type="submit" asp-route-VisitId ="@item.Id" value="Encuestar"></td>
                             </tr>
                         }
                     </tbody>
-                </table>
-
+            </table>
+        </form>
         }
-    }else{
+    }
+    else
+    {
         @using(Html.BeginForm()) //Estudio socioeconomico
         {            
             <!DOCTYPE html>
@@ -67,13 +73,13 @@
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Ingresos mensuales:</label>
-                                                        <input type="number" min="0" class="form-control" id="Ingresos" onchange="test()" placeholder="Ingresos mensuales" value="0">
+                                                        <input asp-for="Study.Income" type="number" min="0" class="form-control" id="Ingresos" onchange="test()" placeholder="Ingresos mensuales" value="0">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Egresos mensuales:</label>
-                                                        <input type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0" readonly>
+                                                        <input asp-for="Study.Expenses" type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0" readonly>
                                                     </div>
                                                 </div> 
                                             </div>
@@ -81,13 +87,13 @@
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Alimentacion:</label>
-                                                        <input type="number" id="Alimentacion" min="0" class="form-control"  onchange="test()" value="0" onchange="test()">
+                                                        <input asp-for="Study.Feeding" type="number" id="Alimentacion" min="0" class="form-control"  onchange="test()" value="0" onchange="test()">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Servicios:</label>
-                                                        <input type="number" min="0" class="form-control" id="Servicios" onchange="test()" value="0" placeholder="Servicios">
+                                                        <input asp-for="Study.Services" type="number" min="0" class="form-control" id="Servicios" onchange="test()" value="0" placeholder="Servicios">
                                                     </div>
                                                 </div> 
                                             </div>
@@ -95,13 +101,13 @@
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Vivienda:</label>
-                                                        <input type="number" min="0" class="form-control" id="Vivienda" onchange="test()" value="0" placeholder="Vivienda">
+                                                        <input asp-for="Study.Recidence" type="number" min="0" class="form-control" id="Vivienda" onchange="test()" value="0" placeholder="Vivienda">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Escolaridad:</label>
-                                                        <input type="number" min="0" class="form-control" id="Escolaridad" onchange="test()" value="0" placeholder="Escolaridad">
+                                                        <input asp-for="Study.Fees" type="number" min="0" class="form-control" id="Escolaridad" onchange="test()" value="0" placeholder="Escolaridad">
                                                     </div>
                                                 </div> 
                                             </div>
@@ -109,13 +115,13 @@
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Transporte:</label>
-                                                        <input type="number" min="0" class="form-control" id="Transporte" value="0" onchange="test()" placeholder="Transporte">
+                                                        <input asp-for="Study.Transport" type="number" min="0" class="form-control" id="Transporte" value="0" onchange="test()" placeholder="Transporte">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Otro:</label>
-                                                        <input type="number" id="Otro" min="0" class="form-control"  value="0" onchange="test()">
+                                                        <input asp-for="Study.Other" type="number" id="Otro" min="0" class="form-control"  value="0" onchange="test()">
                                                     </div>
                                                 </div> 
                                             </div>
@@ -136,35 +142,35 @@
                                             <div class="form-row m-5 ">
                                                 <div class="col-md-auto-md-auto">
                                                     <div class="form-check">
-                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="..." >
+                                                        <input  asp-for="Services[0]" type="checkbox" id="blankCheckbox" value="Recolección de basura" aria-label="..." >
                                                         Recolección de basura
                                                     </div>
                                                     <div class="form-check">
-                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input  asp-for="Services[1]" type="checkbox" id="blankCheckbox" value="Luz" aria-label="...">
                                                         Luz
                                                     </div>
                                                     <div class="form-check">
-                                                        <input  type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input  asp-for="Services[2]" type="checkbox" id="blankCheckbox" value="Pavimentación" aria-label="...">
                                                         Pavimentación
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto-md-auto">
                                                     <div class="form-check">
-                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input asp-for="Services[3]" type="checkbox" id="blankCheckbox" value="Alumbrado" aria-label="...">
                                                         Alumbrado
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input asp-for="Services[4]" type="checkbox" id="blankCheckbox" value="Transporte" aria-label="...">
                                                         Transporte
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input asp-for="Services[5]" type="checkbox" id="blankCheckbox" value="Drenaje" aria-label="...">
                                                         Drenaje
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto-md-auto">
                                                     <div class="form-check">
-                                                        <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                                        <input asp-for="Services[6]" type="checkbox" id="blankCheckbox" value="Agua" aria-label="...">
                                                         Agua
                                                     </div>
                                                 </div>
@@ -182,27 +188,27 @@
                                             <div class="form-row m-5">
                                                 <div class="col-md-auto-md-auto ">
                                                     <div class="form-check">
-                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Place" id="Comunidad" value="Cominidad indigena" aria-label="...">
                                                         Cominidad indigena
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Place" id="Comunidad" value="Rural" aria-label="...">
                                                         Rural
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="Area" required id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Place" required id="Comunidad" value="Urbana" aria-label="...">
                                                         Urbana
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Place" id="Comunidad" value="Marginación" aria-label="...">
                                                         Marginación
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="Area" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Place" id="Comunidad" value="Suburbana" aria-label="...">
                                                         Suburbana
                                                     </div>
                                                 </div>
@@ -220,64 +226,64 @@
                                             <div class="form-row m-5">
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" required required id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" required id="blankRadio1" value="adobe" aria-label="...">
                                                         adobe
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="ladrillo" aria-label="...">
                                                         ladrillo
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="otro material" aria-label="...">
                                                         otro material
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="block" aria-label="...">
                                                         block 
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="lamina de acero" aria-label="...">
                                                         lamina de acero
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="palma" aria-label="...">
                                                         palma
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="carrizo" aria-label="...">
                                                         carrizo
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="lamina de carton" aria-label="...">
                                                         lamina de carton
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="piedra" aria-label="...">
                                                         piedra
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="cemento" aria-label="...">
                                                         cemento
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="madera" aria-label="...">
                                                         madera
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="tabique" aria-label="...">
                                                         tabique
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="concreto" aria-label="...">
                                                         concreto
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Material" id="blankRadio1" value="mixto" aria-label="...">
                                                         mixto
                                                     </div>
                                                 </div>
@@ -296,36 +302,36 @@
                                             <div class="form-row m-5">
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" required name="Study.Status" id="Status" value="Propia" aria-label="...">
                                                         Propia
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="Rentada" aria-label="...">
                                                         Rentada
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="Prestada" aria-label="...">
                                                         Prestada
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="Invasión" aria-label="...">
                                                         Invasión
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="No tiene" aria-label="...">
                                                         No tiene
                                                     </div>
                                                 </div>
                                                 <div class="col-md-auto">
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="Compartida" aria-label="...">
                                                         Compartida
                                                     </div>
                                                     <div class="form-check">
-                                                        <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+                                                        <input  type="radio" name="Study.Status" id="Status" value="Comprada" aria-label="...">
                                                         Comprada
                                                     </div>
                                                 </div>   
@@ -344,7 +350,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="exampleFormControlTextarea1">La vivienda cuenta con (Moviliaria):</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    <textarea asp-for="Study.Furniture" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -361,7 +367,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="exampleFormControlTextarea1">Se pudo observar que:</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    <textarea asp-for="Study.Observations" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -370,7 +376,7 @@
                                         <div class="row justify-content-end">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="..."> 
                                                 <div class="btn-group" role="group">
-                                                    <input type="submit" asp-page-handler="Terminate" class="btn btn-outline-success" onclick="Save()">                                                   
+                                                    <input type="submit" asp-page-handler="Terminate" asp-route-StudyId="@Model.visit.EconomicStudy.Id" asp-route-VisitId="@Model.visit.Evaluator.Id" class="btn btn-outline-success" value="Terminar"> 
                                                 </div>
                                             </div>
                                         </div>

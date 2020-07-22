@@ -1,0 +1,132 @@
+﻿@page
+@model Proyecto.EvaluationsModel
+@{
+
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@if(Model.visit.Id <= 0)
+{
+    <form method = "Post">
+            <table class="table table-info table-striped " style="margin-top:10%;">
+                <!--Head-->
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Accion</th>
+                    </tr>
+                </thead>  
+                <tbody>
+                    @foreach (var item in @Model.Studies)
+                    {
+                        <tr>
+                        <td>@Html.DisplayFor(m => item.Id)</td>
+                        <td><input type="submit" asp-route-Id ="@item.Id" value="Encuestar"></td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+    </form>
+}else{
+
+    <form method="POST">
+         <div class="card-header text-center" style="background-color: #CC33CC; ">
+            Informacion socio economica
+        </div>
+
+        <ul class="list-group list-group-flush" >
+            <li class="list-group-item " >
+                <div class="form-row text-center">
+                    <div class="col">
+                        <label class="alert alert-info form-control text-center text-body" > Ingresos : @Model.Study.Income</label> 
+                    </div>
+
+                    <div class="col">
+                        <label class="alert alert-info form-control text-center text-body"> Egresos : @Model.Study.Expenses</label>
+                    </div>
+                    <div class="col">
+                       <label class="alert alert-info form-control text-center text-body"> Alimentacion : @Model.Study.Feeding</label>
+                    </div>
+                    <div class="col">
+                        <label class="alert alert-info form-control text-center text-body"> Colegiatura : @Model.Study.Fees</label>
+                    </div>
+                    <div class="col">
+                        <label class="alert alert-info form-control text-center text-body"> Transporte : @Model.Study.Transport</label>
+                    </div>
+                    <div class="col">
+                        <label class="alert alert-info form-control text-center text-body"> Otro : @Model.Study.Other</label>
+                    </div>
+                </div>
+            </li>
+      
+
+        <li class="list-group-item text-center" style="background-color: #CC33CC; ">
+            <label for="" class="text-center"> Vivienda </label>
+        </li>
+
+             <li class="list-group-item " >
+                  <div class="form-row m-3 ">
+                    <div class="col">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value="Status : @Model.Study.Status" readonly>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value=" Recidence : @Model.Study.Recidence" readonly>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="form-row m-3 ">
+                    <div class="col">
+                        <div class="form-group">
+                             <input class="form-control" type="text" value="Services : @Model.Study.Services" readonly>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="form-row m-3 ">
+                    <div class="col">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value="Recidencia : @Model.Study.Recidence" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value=" Colonia : @Model.Study.Place" readonly>
+                        </div>
+                    </div> 
+
+                    <div class="col">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value=" Material : @Model.Study.Material" readonly>
+                        </div>
+                    </div> 
+                </div>
+            </li>
+
+            <li class="list-group-item " >
+                <label class="alert alert-info"> Observaciones : @Model.Study.Observations</label><br>
+                <label class="alert alert-info"> Inmoviliaria : @Model.Study.Furniture</label>
+            </li>
+      
+             <li class="list-group-item " >
+                 <div class="col">
+                        <div class="form-group">
+                            <label for="desc">Descuento</label>
+                            <input type="number" asp-for = "Discount" min="0" max="30" required>
+                            <input class="form-control" asp-route-StudyId ="@Model.Study.Id" asp-page-handler="Terminate"  type="submit" value="Terminar" >
+                        </div>
+                 </div>
+             </li>
+       </ul>
+    </form>
+
+}

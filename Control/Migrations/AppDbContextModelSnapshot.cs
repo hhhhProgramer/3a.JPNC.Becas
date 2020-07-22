@@ -53,9 +53,6 @@ namespace Control.Migrations
                     b.Property<int>("Distribution")
                         .HasColumnType("int");
 
-                    b.Property<int>("EvaluatorId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Expenses")
                         .HasColumnType("int");
 
@@ -71,8 +68,8 @@ namespace Control.Migrations
                     b.Property<int>("Income")
                         .HasColumnType("int");
 
-                    b.Property<int>("Material")
-                        .HasColumnType("int");
+                    b.Property<string>("Material")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observations")
                         .HasColumnType("nvarchar(max)");
@@ -80,24 +77,22 @@ namespace Control.Migrations
                     b.Property<int>("Other")
                         .HasColumnType("int");
 
-                    b.Property<int>("Place")
-                        .HasColumnType("int");
+                    b.Property<string>("Place")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rcidence")
+                    b.Property<int>("Recidence")
                         .HasColumnType("int");
 
                     b.Property<string>("Services")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int>("Transport")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EvaluatorId");
 
                     b.ToTable("EconomicStudies");
                 });
@@ -223,6 +218,9 @@ namespace Control.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EconomicStudyId")
+                        .HasColumnType("int");
+
                     b.Property<int>("EvaluatorId")
                         .HasColumnType("int");
 
@@ -231,20 +229,13 @@ namespace Control.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EconomicStudyId");
+
                     b.HasIndex("EvaluatorId");
 
                     b.HasIndex("TutorId");
 
                     b.ToTable("Visits");
-                });
-
-            modelBuilder.Entity("Model.EconomicStudy", b =>
-                {
-                    b.HasOne("Model.Evaluator", "Evaluator")
-                        .WithMany("Studies")
-                        .HasForeignKey("EvaluatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Evaluator", b =>
@@ -273,6 +264,10 @@ namespace Control.Migrations
 
             modelBuilder.Entity("Model.Visit", b =>
                 {
+                    b.HasOne("Model.EconomicStudy", "EconomicStudy")
+                        .WithMany()
+                        .HasForeignKey("EconomicStudyId");
+
                     b.HasOne("Model.Evaluator", "Evaluator")
                         .WithMany("Visits")
                         .HasForeignKey("EvaluatorId")

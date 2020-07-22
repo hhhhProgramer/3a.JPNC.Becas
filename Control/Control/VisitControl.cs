@@ -10,17 +10,52 @@ namespace Control {
         
         private readonly IRepository<Evaluator> eval; 
         private readonly IRepository<Visit> ReposVisit;
-        public VisitControl (AppDbContext context, IRepository<Evaluator> eval,IRepository<Visit> ReposVisit) : base (context) { 
+        private readonly IRepository<EconomicStudy> ReposEvaluation;
+        public VisitControl (
+            AppDbContext context, 
+            IRepository<Evaluator> eval,
+            IRepository<Visit> ReposVisit,
+            IRepository<EconomicStudy> ReposEvaluation
+        ) : base (context) { 
                 this.eval = eval;
                 this.ReposVisit = ReposVisit;
+                this.ReposEvaluation = ReposEvaluation;
         }
 
-        
+        public Visit GetComplete(int id)
+        {
+            return  context.Visits
+                    .Include(x => x.Tutor)
+                    .Include(y => y.EconomicStudy)
+                    .Include(z => z.Evaluator)
+                    .FirstOrDefault(v => v.Id == id) ?? new Visit();
+        }
+
+        public IEnumerable<Visit> GetOfEvaluator(int id)
+        {
+            return  context.Visits
+                    .Include(x => x.Tutor)
+                        .ThenInclude(c => c.student)
+                    .Include(y => y.EconomicStudy)
+                    .Include(z => z.Evaluator)
+                    .Where(x => x.EvaluatorId == id)
+                    .AsEnumerable();
+        }
+
+        public Visit GetOfStudy(int id)
+        {
+            return  context.Visits
+                    .Include(x => x.Tutor)
+                        .ThenInclude(c => c.student)
+                    .Include(y => y.EconomicStudy)
+                    .Include(z => z.Evaluator)
+                    .FirstOrDefault(x => x.EconomicStudy.Id == id)
+                    ?? new Visit();
+        }
 
         public void Resrved (Tutor tutor) {
             
             IEnumerable<Evaluator> evaluator = eval.GetAll();
-            //context.Dispose();
             IEnumerable<Visit>  Visits = GetAll();
 
             if(!evaluator.Any())
@@ -52,9 +87,12 @@ namespace Control {
             }
             ReposVisit.Insert(new Visit(){
                 EvaluatorId = visit.Evaluator.Id,
-                TutorId = tutor.Id
+                TutorId = tutor.Id,
+                EconomicStudy = new EconomicStudy(){
+                    Status = (int)StudyStatus.REGISTER
+                } 
             });
-            Insert (visit); 
+            
         }
     }
 }

@@ -54,6 +54,10 @@ namespace Proyecto
                     case TypeAccount.ADMIN:
                         result = RedirectToPage("EstudioSocioeconomico","OnGet",account);        
                     break;
+
+                    case TypeAccount.EVALUATOR:
+                        result = RedirectToPage("Evaluatios");        
+                    break;
                 }                
             } 
                 return result;

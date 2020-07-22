@@ -14,37 +14,71 @@ namespace Proyecto
     {
         private readonly IVisitRepository ReposVisits;
         public readonly IEvaluatorRepository evaluators;
-        public Evaluator evaluator;
-        public Visit visit;
+        public readonly IEconomicStudyRepository repository;
+        [BindProperty]
+        public string [] Services { get; set; } 
 
-        public EstudioSocioeconomicoModel(IVisitRepository ReposVisits,IEvaluatorRepository evaluators)
+        [BindProperty]
+        public EconomicStudy Study { get; set; }
+        public Visit visit { get; set; }
+        public List<Visit> Visits { get; set; }
+
+        public EstudioSocioeconomicoModel(
+            IEvaluatorRepository evaluators,
+            IEconomicStudyRepository repository,
+            IVisitRepository ReposVisits) 
         {
-            this.ReposVisits = ReposVisits;
             this.evaluators = evaluators;
+            this.repository = repository;
+            this.ReposVisits = ReposVisits;
+            Visits = new List<Visit>();
             visit = new Visit();
-            evaluator = new Evaluator();
+            Study = new EconomicStudy();
         }
         
         public void OnGet(Account account)
         {
-            evaluator = evaluators.GetEvaluator(account.Id) ?? new Evaluator();
-            if(evaluator.Id <= 0)
-                Console.WriteLine("Error");
-            else    
-                Console.WriteLine("Exito");     
+            var  evaluator = evaluators.GetEvaluator(account.Id) ?? new Evaluator();
+            if(evaluator.Id > 0)
+                Visits  =  GetVisits(evaluator.Id);
+            else
+               RedirectToPage("Index");
+        }
+ 
+        public void OnPost(int VisitId)
+        {
+            this.visit = ReposVisits.GetComplete(VisitId);
+            Console.WriteLine(visit.EconomicStudy.Id);
+            Services = new string [7];
         }
 
-        public void OnPost(Visit visit){
-            this.visit = visit;
-            Console.WriteLine(visit.Id);
-        }
-
-        public void OnPostTerminate(){
+        
+        public void OnPostTerminate(int StudyId,int VisitId){
+            Study.Id = StudyId;
+            Study.Status  = (int)StudyStatus.PROCESS;
+            Study.Services  = FormatToServices();            
+            repository.Update(Study);
+            Visits  =  GetVisits(VisitId);
             Console.WriteLine("Terminado");
         }
 
-        public void test(){
-            Console.WriteLine("Test");
+        public List<Visit> GetVisits(int Id){
+            return  ReposVisits.GetOfEvaluator(Id)
+                    .Where(x => x.EconomicStudy.Status == (int)StudyStatus.REGISTER)
+                    .ToList(); 
+        }
+
+        public string FormatToServices(){
+            string srv = "";
+            for(int i=0 ; i < Services.Length;i++){
+                if(i == Services.Length-1)
+                    srv += Services[i];
+                else
+                    srv += Services[i] + ",";
+            }
+            Study.Services = srv;
+            return srv;
         }
     }
 }
+

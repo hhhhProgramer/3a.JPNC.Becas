@@ -50,5 +50,13 @@ namespace Control
             context.SaveChanges();
             return entity.Id;
         }
+
+        public void Update(T entity)
+        {
+                
+            entities.Update(entity);
+            context.SaveChanges();
+            
+        }
     }
 }

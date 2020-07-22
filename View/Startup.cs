@@ -43,6 +43,7 @@ namespace View
             services.AddScoped<IVisitRepository, VisitControl> ();
             services.AddScoped<IStudentRepository, StudentContainer> ();
             services.AddScoped<IAccoutRepository, AccoutControl> ();
+            services.AddScoped<IEconomicStudyRepository, EconomicStudyControl> ();
             
             services.AddRouting (option => {
                 option.LowercaseUrls = true;

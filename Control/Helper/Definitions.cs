@@ -1,4 +1,11 @@
 public enum TypeAccount : int{
     STUDENT,
-    ADMIN
+    ADMIN,
+    EVALUATOR
+};
+
+public enum StudyStatus : int{
+    REGISTER,
+    PROCESS,
+    COMPLETE
 };
