@@ -64,3 +64,4 @@ Control/obj/Debug/netcoreapp3.1/Control.assets.cache
 Control/obj/Debug/netcoreapp3.1/Control.csproj.FileListAbsolute.txt
 Model/ob/*
 Model/bin/*
+node_modules
