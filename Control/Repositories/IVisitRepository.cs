@@ -5,7 +5,7 @@ namespace Control.Repositories
 {
     public interface IVisitRepository : IRepository<Visit>
     {
-         void Resrved(Tutor tutor);
+         int Resrved(Tutor tutor);
          Visit GetComplete(int id);
          IEnumerable<Visit> GetOfEvaluator(int id);
          Visit GetOfStudy(int id);

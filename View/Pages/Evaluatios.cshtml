@@ -34,7 +34,7 @@
     </form>
 }else{
 
-    <form method="POST">
+    <form method="POST" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
          <div class="card-header text-center" style="background-color: #CC33CC; ">
             Informacion socio economica
         </div>
@@ -118,46 +118,16 @@
             </li>
       
              <li class="list-group-item " >
-                 <div class="col">
+                   <div class="col">
                         <div class="form-group">
                             <label for="desc">Descuento</label>
                             <input type="number" asp-for = "Discount" min="0" max="30" required>
                             <input class="form-control" asp-route-StudyId ="@Model.Study.Id" asp-page-handler="Terminate"  type="submit" value="Terminar" >
-                            <input type="submit" class="form-control" onclick="generatedPdfFile()" value="Pdf" >
                         </div>
                  </div>
              </li>
        </ul>
     </form>
-}
-
-
-@section Scripts{
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
-
-<script type="text/javascript">
-
-
-    $(document).ready(function(){
-        
-    })
-
-    function generatedPdfFile()
-    {
-        
-         // create the window before the callback
-        var win = window.open('', '_blank');
-        var docDefinition = { 
-            content:[
-                'This is an sample PDF printed with pdfMake'
-            ]
-        };
-
-       pdfMake.createPdf(docDefinition).open({}, win);
-    }
-</script>
 }
 
 

@@ -26,6 +26,7 @@ namespace Control {
         {
             return  context.Visits
                     .Include(x => x.Tutor)
+                        .ThenInclude(c => c.student)
                     .Include(y => y.EconomicStudy)
                     .Include(z => z.Evaluator)
                     .FirstOrDefault(v => v.Id == id) ?? new Visit();
@@ -53,13 +54,13 @@ namespace Control {
                     ?? new Visit();
         }
 
-        public void Resrved (Tutor tutor) {
+        public int Resrved (Tutor tutor) {
             
             IEnumerable<Evaluator> evaluator = eval.GetAll();
             IEnumerable<Visit>  Visits = GetAll();
 
             if(!evaluator.Any())
-                return;
+                return 0;
             
             bool send = true;
             int day = 0;
@@ -85,14 +86,14 @@ namespace Control {
                 }
                 day++; //si todos los evaluadores estan ocupados ese dia pasa al siguiente
             }
-            ReposVisit.Insert(new Visit(){
+            var id = ReposVisit.Insert(new Visit(){
                 EvaluatorId = visit.Evaluator.Id,
                 TutorId = tutor.Id,
                 EconomicStudy = new EconomicStudy(){
                     Status = (int)StudyStatus.REGISTER
                 } 
             });
-            
+            return id;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Proyecto {
                 Console.WriteLine(account.Correo);
          }
 
-        public void OnPost () {
+        public IActionResult OnPost () {
             Console.WriteLine(account.Correo);
             //generar una cuenata con sus relaciones
             
@@ -58,8 +58,9 @@ namespace Proyecto {
 
             repository.Insert (Tutor);
             repository.Insert (Tutor2);
-            ReposVisit.Resrved(Tutor);
-            Response.Redirect("../StudentIndex"); 
+            var id = ReposVisit.Resrved(Tutor);
+            Console.WriteLine(id);
+            return RedirectToPage("Susseful","OnGet",new {id = id});  
         }
     }
 }

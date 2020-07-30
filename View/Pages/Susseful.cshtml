@@ -1,0 +1,41 @@
+﻿@page
+@model Proyecto.SussefulModel
+@{
+}
+
+<body onload="generatedPdfFile();">
+    <div class="align-content-center text-center">
+        <h3>El Registro ha sido exitoso</h3>
+        <a class="btn btn-success" href="@Url.Page("Index")">Continuar al inicio</a><br>
+        <label>si la descarga no comienzo preciona</label><button value="aqui" onclick="generatedPdfFile();">
+    </div>
+</body>
+
+
+@section Scripts{
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+
+
+<script type="text/javascript">
+
+    function generatedPdfFile()
+    {
+        
+         // create the  window before the callback
+        
+        var docDefinition = { 
+            content:[
+                'Tutor: @Model.visit.Tutor.FirstName @Model.visit.Tutor.LastName \n',
+                '\nCodigo de visita: @Model.visit.Id \n',
+                '\nFecha de visita: @Model.visit.Date \n',
+                '\nNombre del becado: @Model.visit.Tutor.student.FirstName \n'
+            ]
+        };
+
+       pdfMake.createPdf(docDefinition).download();
+    }
+</script>
+}
+
