@@ -2,7 +2,6 @@
 @model Proyecto.EstudioSocioeconomicoModel
 @{
     ViewData["Title"] = "Estudio";
-    Layout = "_Login";
 }
 
 @{
@@ -79,7 +78,7 @@
                                                 <div class="col">
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label  for="user" >Egresos mensuales:</label>
-                                                        <input asp-for="Study.Expenses" type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0" readonly>
+                                                        <input asp-for="Study.Expenses" type="number" min="0" class="form-control" id="Egresos" onchange="test()"  placeholder="" value="0">
                                                     </div>
                                                 </div> 
                                             </div>

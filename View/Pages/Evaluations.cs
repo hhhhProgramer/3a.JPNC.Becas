@@ -51,7 +51,10 @@ namespace Proyecto
             visit.Tutor.student.Discount = this.Discount;
             ReposStudies.Update(visit.EconomicStudy);
             ReposStudents.Update(visit.Tutor.student);
-            Console.WriteLine("Terminado");
+            visit= new Visit();
+            Studies =   ReposStudies.GetAll()
+                    .Where(x => x.Status == (int)StudyStatus.PROCESS)
+                    .ToList();
         }
     }
 }
