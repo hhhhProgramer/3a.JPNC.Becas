@@ -22,6 +22,18 @@ namespace Control {
                 this.ReposEvaluation = ReposEvaluation;
         }
 
+        public IEnumerable<Visit> GetAllComplete()
+        {
+            return  context.Visits
+                    .Include(x => x.Tutor)
+                        .ThenInclude(c => c.Account)
+                    .Include(x => x.Tutor)
+                        .ThenInclude(x => x.student)
+                    .Include(y => y.EconomicStudy)
+                    .Include(z => z.Evaluator)
+                    .AsEnumerable();
+        }
+
         public Visit GetComplete(int id)
         {
             return  context.Visits
@@ -71,14 +83,14 @@ namespace Control {
             //cabiar a una consulta con linq 
             while (send) {
                 foreach (var item in evaluator) {
-                        DateOfVisit = DateTime.Now.AddDays (day);
+                        DateOfVisit = DateTime.Now.AddDays(day);
                         visit = GetAll().FirstOrDefault( x =>
                             x.EvaluatorId == item.Id &&
                             x.Date.Date == DateOfVisit.Date
                         ) ?? new Visit();
+
                         if (visit.Id <= 0) { //si no hay un evaluador registrado ese dia lo registra
                             send = false;
-                            visit.Date = DateOfVisit;
                             visit.Evaluator = item;
                             visit.TutorId = tutor.Id;
                             break;
@@ -88,6 +100,7 @@ namespace Control {
             }
             var id = ReposVisit.Insert(new Visit(){
                 EvaluatorId = visit.Evaluator.Id,
+                Date = DateOfVisit,
                 TutorId = tutor.Id,
                 EconomicStudy = new EconomicStudy(){
                     Status = (int)StudyStatus.REGISTER
