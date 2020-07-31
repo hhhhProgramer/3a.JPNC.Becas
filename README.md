@@ -7,6 +7,6 @@ pueda solicitar una beca para los alumnos que esten registrados en la escuela la
 ofrece la beca.
 cada alumno recibira una beca dependiendo de su estudio socioeconomico
 
-tegnologias utilizadas:
+tecnologias utilizadas:
 net core
 Razor
