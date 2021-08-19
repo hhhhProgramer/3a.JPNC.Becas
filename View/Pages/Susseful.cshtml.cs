@@ -21,8 +21,8 @@ namespace Proyecto
         
         public void OnGet(int id)
         {
+            if(id <= 0) id = 1;
             this.visit = ReposVisits.GetComplete(id);
-            if(visit.Id > 0) Console.WriteLine("Correcto");
         }
 
     }

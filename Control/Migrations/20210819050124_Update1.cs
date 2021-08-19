@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Control.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Update1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace Control.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Status = table.Column<bool>(nullable: false),
                     Correo = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
@@ -24,11 +25,37 @@ namespace Control.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EconomicStudies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Status = table.Column<int>(nullable: false),
+                    Income = table.Column<int>(nullable: false),
+                    Expenses = table.Column<int>(nullable: false),
+                    Feeding = table.Column<int>(nullable: false),
+                    Recidence = table.Column<int>(nullable: false),
+                    Services = table.Column<string>(nullable: true),
+                    Fees = table.Column<int>(nullable: false),
+                    Transport = table.Column<int>(nullable: false),
+                    Other = table.Column<int>(nullable: false),
+                    Distribution = table.Column<int>(nullable: false),
+                    Place = table.Column<string>(nullable: true),
+                    Material = table.Column<string>(nullable: true),
+                    Furniture = table.Column<string>(nullable: true),
+                    Observations = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EconomicStudies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Names = table.Column<string>(nullable: true),
@@ -52,7 +79,7 @@ namespace Control.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Names = table.Column<string>(nullable: true),
@@ -74,7 +101,7 @@ namespace Control.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Birthday = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
@@ -101,51 +128,25 @@ namespace Control.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EconomicStudies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<bool>(nullable: false),
-                    Income = table.Column<int>(nullable: false),
-                    Expenses = table.Column<int>(nullable: false),
-                    Feeding = table.Column<int>(nullable: false),
-                    Rcidence = table.Column<int>(nullable: false),
-                    Services = table.Column<string>(nullable: true),
-                    Fees = table.Column<int>(nullable: false),
-                    Transport = table.Column<int>(nullable: false),
-                    Other = table.Column<int>(nullable: false),
-                    Distribution = table.Column<int>(nullable: false),
-                    Place = table.Column<int>(nullable: false),
-                    Material = table.Column<int>(nullable: false),
-                    Furniture = table.Column<string>(nullable: true),
-                    Observations = table.Column<string>(nullable: true),
-                    EvaluatorId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EconomicStudies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EconomicStudies_Evaluators_EvaluatorId",
-                        column: x => x.EvaluatorId,
-                        principalTable: "Evaluators",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Visits",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Date = table.Column<DateTime>(nullable: false),
                     TutorId = table.Column<int>(nullable: false),
-                    EvaluatorId = table.Column<int>(nullable: false)
+                    EvaluatorId = table.Column<int>(nullable: false),
+                    EconomicStudyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Visits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Visits_EconomicStudies_EconomicStudyId",
+                        column: x => x.EconomicStudyId,
+                        principalTable: "EconomicStudies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Visits_Evaluators_EvaluatorId",
                         column: x => x.EvaluatorId,
@@ -159,11 +160,6 @@ namespace Control.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EconomicStudies_EvaluatorId",
-                table: "EconomicStudies",
-                column: "EvaluatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluators_AccountId",
@@ -181,6 +177,11 @@ namespace Control.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Visits_EconomicStudyId",
+                table: "Visits",
+                column: "EconomicStudyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Visits_EvaluatorId",
                 table: "Visits",
                 column: "EvaluatorId");
@@ -194,10 +195,10 @@ namespace Control.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EconomicStudies");
+                name: "Visits");
 
             migrationBuilder.DropTable(
-                name: "Visits");
+                name: "EconomicStudies");
 
             migrationBuilder.DropTable(
                 name: "Evaluators");

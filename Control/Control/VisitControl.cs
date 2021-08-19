@@ -68,7 +68,7 @@ namespace Control {
 
         public int Resrved (Tutor tutor) {
             
-            IEnumerable<Evaluator> evaluator = eval.GetAll();
+            IEnumerable<Evaluator> evaluator = eval.GetAll().ToList();
             IEnumerable<Visit>  Visits = GetAll();
 
             if(!evaluator.Any())

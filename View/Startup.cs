@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 
 namespace View
 {
@@ -31,7 +33,7 @@ namespace View
 
             services.AddDbContextPool<AppDbContext> (
                 option => {
-                    option.UseSqlServer (Configuration.GetConnectionString ("EFDbConnection"));
+                    option.UseMySql(Configuration.GetConnectionString ("EFDbMysqlConnection"));
                 }
             );
 
